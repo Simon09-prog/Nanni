@@ -1,0 +1,52 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "Images"
+public_folder: "Images"
+
+locale: "de"
+
+collections:
+  - name: "menu"
+    label: "Speisekarte"
+    files:
+      - file: "data/menu.json"
+        label: "Nanni Speisekarte"
+        name: "menu"
+        fields:
+          - label: "Kopfbereich"
+            name: "hero"
+            widget: "object"
+            fields:
+              - { label: "Adresszeile (klein, oben)", name: "eyebrow", widget: "string" }
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Untertitel", name: "tagline", widget: "string" }
+              - { label: "Öffnungszeiten", name: "hours", widget: "string" }
+
+          - label: "Shokupan-Hinweisbox"
+            name: "signature"
+            widget: "object"
+            fields:
+              - { label: "Titel", name: "title", widget: "string" }
+              - { label: "Text", name: "text", widget: "text" }
+              - { label: "Foto", name: "photo", widget: "image", required: false }
+
+          - label: "Kategorien"
+            name: "categories"
+            widget: "list"
+            summary: "{{title}}"
+            fields:
+              - { label: "Interne ID (bitte nicht ändern)", name: "id", widget: "string" }
+              - { label: "Kategorie-Titel", name: "title", widget: "string" }
+              - { label: "Untertitel (optional)", name: "subtitle", widget: "string", required: false }
+              - { label: "Hintergrundfoto (optional)", name: "photo", widget: "image", required: false }
+              - label: "Produkte"
+                name: "items"
+                widget: "list"
+                summary: "{{name}} — {{price}}"
+                fields:
+                  - { label: "Produktname", name: "name", widget: "string" }
+                  - { label: "Preis (z.B. 3,50 €)", name: "price", widget: "string" }
+                  - { label: "Beschreibung", name: "description", widget: "string", required: false }
+                  - { label: "Badge (z.B. Special, Fan-Favorit)", name: "badge", widget: "string", required: false }
